@@ -1032,6 +1032,17 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 					}
 				}
 			}
+			
+			
+			
+			
+			
+			
+				fstream read;
+				char str[1024];
+				sprintf(str, "weight_NL_%.2f_%.2f.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
+			 	read.open(str,fstream::app);
+			 	read <<epoch<<", "<<recordidx<<", "<<param -> WeightTrackPeriod<<", "<<Gth1crossIH<<", "<<Gth1crossHO<<endl;
 		}
     }
 }
