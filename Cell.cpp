@@ -406,7 +406,7 @@ void RealDevice::Write(double deltaWeightNormalized, double weight, double minWe
 			paramBLTP = (maxConductance - minConductance) / (1 - exp(-maxNumLevelLTP/paramALTP));
 			xPulse = InvNonlinearWeight(conductance, maxNumLevelLTP, paramALTP, paramBLTP, minConductance);
 			if(param->LRsplit == 1){
-			 double split = (double)param->steps/4;
+			 double split = (double)param->CS/4;
                    if (xPulse>=split*3)
                                {numPulse =numPulse*1.00/scalenumberGp[3]; }
                    else if (xPulse<split*3&& xPulse>=split*2)
@@ -429,7 +429,7 @@ void RealDevice::Write(double deltaWeightNormalized, double weight, double minWe
 			paramBLTD = (maxConductance - minConductance) / (1 - exp(-maxNumLevelLTD/paramALTD));
 			xPulse = InvNonlinearWeight(conductance, maxNumLevelLTD, paramALTD, paramBLTD, minConductance);
 			if(param->LRsplit == 1){
-		        double split = (double)param->steps/4;
+		        double split = (double)param->CS/4;
                         if (xPulse>=split*3)
                         {numPulse =numPulse*1.00/scalenumberGn[0];
 
