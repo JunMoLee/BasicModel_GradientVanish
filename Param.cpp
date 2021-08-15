@@ -59,8 +59,12 @@ Param::Param() {
     /*Optimization method 
     Available option include: "SGD", "Momentum", "Adagrad", "RMSprop" and "Adam"*/
     optimization_type = "SGD";
-	NL_Gp = 1;
-	NL_Gn = -6;
+	NL_LTP_Gp =1;
+	NL_LTD_Gp =-6;
+	G_L_Period=0;
+	G_Period=0;
+	LRsplit =1;
+	CS =100;
 
 	/* Hardware parameters */
 	useHardwareInTrainingFF = true;   // Use hardware in the feed forward part of training or not (true: realistic hardware, false: ideal software)
