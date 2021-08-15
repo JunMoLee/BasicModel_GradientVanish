@@ -61,8 +61,8 @@ Param::Param() {
     optimization_type = "SGD";
 	NL_LTP_Gp =1;
 	NL_LTD_Gp =-6;
-	G_L_Period=0;
-	G_Period=0;
+	G_L_Period=8000;
+	G_Period=200;
 	LRsplit =1;
 	CS =100;
 
