@@ -1069,7 +1069,7 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 			}
 						
 			for (int j = 0; j  < param->nHide; j++) {
-			read1<< ", "<< s1[j] / ( a1[j] * (1 - a1[j])  );
+			read1<< ", "<< ( a1[j] * (1 - a1[j])  );
 			}
 						
 			for (int j = 0; j < param->nOutput; j++) {
@@ -1077,7 +1077,7 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 			}
 		
 			for (int j = 0; j < param->nOutput; j++) {
-			read2<< ", "<<s2[j] / ( a2[j] * (1 - a2[j])  );
+			read2<< ", "<<( a2[j] * (1 - a2[j])  );
 			}
 		
 		read1<<endl;
