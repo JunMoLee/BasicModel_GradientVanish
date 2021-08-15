@@ -101,7 +101,7 @@ double RMSprop(double gradient, double learning_rate, double gradSquarePrev,doub
 double Adam(double gradient, double learning_rate, double momentumPreV, double velocityPrev, double BETA1=0.1, double BETA2=0.7, double EPSILON=2E-1);
 
 
-void Train(const int numTrain, const int epochs, char *optimization_type) {
+void Train(const int numTrain, const int epochs, char *optimization_type, int i) {
 int numBatchReadSynapse;	    // # of read synapses in a batch read operation (decide later)
 int numBatchWriteSynapse;	// # of write synapses in a batch write operation (decide later)
 double outN1[param->nHide]; // Net input to the hidden layer [param->nHide]
@@ -117,7 +117,7 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 	
 	for (int t = 0; t < epochs; t++) {
 		for (int batchSize = 0; batchSize < numTrain; batchSize++) {
-
+			int iteration = (i-1)*numTrain + batchSize;
 			int i = rand() % param->numMnistTrainImages;  // Randomize sample
             //int i = 1;       // use this value for debug
 			// Forward propagation
@@ -1053,9 +1053,9 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 		fstream read2;
 			
 		char str1[1024];
-		sprintf(str1, "gradientIH_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
+		sprintf(str1, "gradientIH_NL_%.2f_%.2f_CS_%d_LRsplit_%d.csv" ,param->NL_LTP_Gp, param->NL_LTD_Gp, param->CS, param->LRsplit);
 		char str2[1024];
-		sprintf(str2, "gradientHO_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
+		sprintf(str2, "gradientHO_NL_%.2f_%.2f_CS_%d_LRsplit_%d.csv" ,param->NL_LTP_Gp, param->NL_LTD_Gp, param->CS, param->LRsplit);
 		read1.open(str1,fstream::app);	
 		read2.open(str2,fstream::app);
 		read1<<epoch<<", "<<recordidx;
@@ -1088,7 +1088,7 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 				fstream read;
 				
 				char str[1024];
-				sprintf(str, "overallweightdistribution_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
+				sprintf(str, "overallweightdistribution_NL_%.2f_%.2f_CS_%d_LRsplit_%d.csv" ,param->NL_LTP_Gp, param->NL_LTD_Gp, param->CS, param->LRsplit);
 			 	read.open(str,fstream::app);
 		read <<epoch<<", "<<recordidx;
 			 	
@@ -1113,7 +1113,7 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 		fstream read_sparsity;
 				
 		char str_sparsity[1024];
-		sprintf(str_sparsity, "sparsity_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
+		sprintf(str_sparsity, "sparsity_NL_%.2f_%.2f_CS_%d_LRsplit_%d.csv" ,param->NL_LTP_Gp, param->NL_LTD_Gp, param->CS, param->LRsplit);
 		read_sparsity.open(str_sparsity,fstream::app);
 		int IHsparsity = 0;
 		int HOsparsity = 0;
@@ -1134,118 +1134,7 @@ double s2[param->nOutput];  // Output delta from hidden layer to the output laye
 		}
 			read_sparsity <<epoch<<", "<<recordidx<<", "<<IHsparsity<<", "<<HOsparsity<<endl;
 		
-		
-		/*weight location composition check (completed) */
-
-					
-	 	// location0
-		// location1
-		// location2
-		// location3 
-		// -> distribution check
-
-		fstream read1;
-		fstream read2;
-		fstream read3;
-		fstream read4;
-				
-		char str1[1024];
-		sprintf(str1, "location0weightdistribution_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
-		char str2[1024];
-		sprintf(str2, "location1weightdistribution_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
-		char str3[1024];
-		sprintf(str3, "location2weightdistribution_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
-		char str4[1024];
-		sprintf(str4, "location3weightdistribution_NL_%.2f_%.2f_Gth_%.2f_LR_%.2f_revLR_%.2f_%d_%d.csv" ,NL_LTP_Gp, NL_LTD_Gp, Gth1, LA, revlr, reverseperiod, refperiod);
-		
-		
-		read1.open(str1,fstream::app);
-		read2.open(str2,fstream::app);
-		read3.open(str3,fstream::app);
-		read4.open(str4,fstream::app);
-		IHsparsity = 0;
-		HOsparsity = 0;
-		read1 <<epoch<<", "<<recordidx;
-		read2 <<epoch<<", "<<recordidx;
-		read3 <<epoch<<", "<<recordidx;
-		read4 <<epoch<<", "<<recordidx;
-		
-							for (int j = 0; j  < param->nHide; j++) {
-					for (int k = 0; k < param->nInput; k++) {
-						if (static_cast<RealDevice*>(arrayIH->cell[j][k])->location==0){
-						read1<<	", "<<weight1[j][k];
-						}
-						else
-						{
-						read1<<", "<<1000000;		
-						}
-						if (static_cast<RealDevice*>(arrayIH->cell[j][k])->location==1){
-						read2<<	", "<<weight1[j][k];
-						}
-						else
-						{
-						read2<<", "<<1000000;				
-						}
-						if (static_cast<RealDevice*>(arrayIH->cell[j][k])->location==2){
-						read3<<	", "<<weight1[j][k];
-						}
-						else
-						{
-						read3<<", "<<1000000;			
-						}
-						if (static_cast<RealDevice*>(arrayIH->cell[j][k])->location==3){
-						read4<<	", "<<weight1[j][k];
-						}
-						else
-						{
-						read4<<", "<<1000000;		
-						}
-						
-					}
-			}
-
-						
-						for (int j = 0; j < param->nOutput; j++) {
-					for (int k = 0; k < param->nHide; k++) {
-						if (static_cast<RealDevice*>(arrayHO->cell[j][k])->location==0){
-						read1<<	", "<<weight2[j][k];
-						}
-						else
-						{
-						read1<<", "<<1000000;		
-						}
-						if (static_cast<RealDevice*>(arrayHO->cell[j][k])->location==1){
-						read2<<	", "<<weight2[j][k];
-						}
-						else
-						{
-						read2<<", "<<1000000;				
-						}
-						if (static_cast<RealDevice*>(arrayHO->cell[j][k])->location==2){
-						read3<<	", "<<weight2[j][k];
-						}
-						else
-						{
-						read3<<", "<<1000000;			
-						}
-						if (static_cast<RealDevice*>(arrayHO->cell[j][k])->location==3){
-						read4<<	", "<<weight2[j][k];
-						}
-						else
-						{
-						read4<<", "<<1000000;		
-						}
-						
-					}
-						}
-		
-		
-		
-				
-		read1<<endl;
-		read2<<endl;
-		read3<<endl;
-		read4<<endl;
+	
 		
 		///////////////////////////
 		
