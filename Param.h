@@ -60,9 +60,14 @@ public:
 	double alpha2;		// Learning rate for the synapses from hidden to output layer
 	double maxWeight;	// Upper bound of weight value
 	double minWeight;	// Lower bound of weight value
-    char* optimization_type;
-	double NL_Gp =0;
-	double NL_Gn=0;
+    	char* optimization_type;
+	double NL_LTP_Gp =0;
+	double NL_LTD_Gp =0;
+	int G_L_Period=0;
+	int G_Period=0;
+	int LRsplit =0;
+	int CS =0;
+	
 	/* Hardware parameters */
 	bool useHardwareInTrainingFF;   // Use hardware in the feed forward part of training or not (true: realistic hardware, false: ideal software)
 	bool useHardwareInTrainingWU;   // Use hardware in the weight update part of training or not (true: realistic hardware, false: ideal software)
