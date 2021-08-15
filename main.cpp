@@ -142,10 +142,10 @@ int main() {
 		printf("\tWrite latency=%.4e s\n", subArrayIH->writeLatency + subArrayHO->writeLatency);
 		printf("\tRead energy=%.4e J\n", arrayIH->readEnergy + subArrayIH->readDynamicEnergy + arrayHO->readEnergy + subArrayHO->readDynamicEnergy);
 		printf("\tWrite energy=%.4e J\n", arrayIH->writeEnergy + subArrayIH->writeDynamicEnergy + arrayHO->writeEnergy + subArrayHO->writeDynamicEnergy);
-		NL_Gp = param->NL_LTP_Gp;
-		NL_Gn = param->NL_LTD_Gp;
-		CS=  param->CS;
-		LRsplit=  param->LRsplit;
+		double NL_Gp = param->NL_LTP_Gp;
+		double NL_Gn = param->NL_LTD_Gp;
+		int CS=  param->CS;
+		int LRsplit=  param->LRsplit;
 		
 		fstream read;
 		char str[1024];
