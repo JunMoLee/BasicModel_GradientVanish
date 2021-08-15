@@ -312,7 +312,7 @@ RealDevice::RealDevice(int x, int y) {
 	
 	/* Device-to-device weight update variation */
 	NL_LTP = param->NL_LTP_Gp;	// LTP nonlinearity
-	NL_LTD = param->NL_LTP_Gn;	// LTD nonlinearity
+	NL_LTD = param->NL_LTD_Gp;	// LTD nonlinearity
 	
 	scalenumberGp[0]=1;
         scalenumberGp[1]=1;
