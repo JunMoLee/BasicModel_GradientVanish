@@ -47,6 +47,8 @@
 #include "Mapping.h"
 #include "NeuroSim.h"
 #include <fstream>
+#include <sstream>
+#include <string>
 
 extern Param *param;
 
