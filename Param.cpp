@@ -60,7 +60,9 @@ Param::Param() {
     Available option include: "SGD", "Momentum", "Adagrad", "RMSprop" and "Adam"*/
     optimization_type = "SGD";
 	NL_LTP_Gp =1;
-	NL_LTD_Gp =-6;
+	const double
+	ltd=3;
+	NL_LTD_Gp =-ltd;
 	G_L_Period=8000;
 	G_Period=200;
 	LRsplit =1;
