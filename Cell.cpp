@@ -323,26 +323,94 @@ RealDevice::RealDevice(int x, int y) {
         scalenumberGn[2]=1;
         scalenumberGn[3]=1;
 	        if(NL_LTD==-9){
-                scalenumberGn[0]=3.9999;
+		double scalelist[4] = [3.999930474075175, 6.952471636095094e-05, 1.2084425507891551e-09, 2.1004521485225464e-14]
+                scalenumberGn[0]=scalelist[0];
 
-                scalenumberGn[1]=6.9524e-05;
+                scalenumberGn[1]=scalelist[1];
 
-                scalenumberGn[2]=1.208442e-09;
+                scalenumberGn[2]=scalelist[2];
 
-                scalenumberGn[3]=2.100452e-14;
+                scalenumberGn[3]=scalelist[3];
 
         }
+		        if(NL_LTD==-8){
+		double scalelist[4] = [3.9649247397590486, 0.03476771500742268, 0.0003048718667257278, 2.6733668031099115e-06]
+                scalenumberGn[0]=scalelist[0];
+
+                scalenumberGn[1]=scalelist[1];
+
+                scalenumberGn[2]=scalelist[2];
+
+                scalenumberGn[3]=scalelist[3];
+
+        }
+		        if(NL_LTD==-7){
+		double scalelist[4] = [3.7502833023368143, 0.23418054868890328, 0.014623036438357741, 0.0009131125359245978]
+                scalenumberGn[0]=scalelist[0];
+
+                scalenumberGn[1]=scalelist[1];
+
+                scalenumberGn[2]=scalelist[2];
+
+                scalenumberGn[3]=scalelist[3];
+
+        }
+		        if(NL_LTD==-6){
+		double scalelist[4] = [3.3690006480643495, 0.5332401641614449, 0.0844004208898845, 0.013358766884320717]
+                scalenumberGn[0]=scalelist[0];
+
+                scalenumberGn[1]=scalelist[1];
+
+                scalenumberGn[2]=scalelist[2];
+
+                scalenumberGn[3]=scalelist[3];
+
+        }
+		        if(NL_LTD==-5){
+		double scalelist[4] = [2.9253292027204583, 0.7977749353133732, 0.21756349569900849, 0.05933236626715946]
+                scalenumberGn[0]=scalelist[0];
+
+                scalenumberGn[1]=scalelist[1];
+
+                scalenumberGn[2]=scalelist[2];
+
+                scalenumberGn[3]=scalelist[3];
+
+        }
+		        if(NL_LTD==-4){
+		double scalelist[4] = [2.48064411355611, 0.9796671619190623, 0.386894574234879, 0.15279415028994825]
+                scalenumberGn[0]=scalelist[0];
+
+                scalenumberGn[1]=scalelist[1];
+
+                scalenumberGn[2]=scalelist[2];
+
+                scalenumberGn[3]=scalelist[3];
+
+        }
+		        if(NL_LTD==-3){
+		double scalelist[4] = [2.05927515072127, 1.079043850300676, 0.5654104214601406, 0.2962705775179131]
+                scalenumberGn[0]=scalelist[0];
+
+                scalenumberGn[1]=scalelist[1];
+
+                scalenumberGn[2]=scalelist[2];
+
+                scalenumberGn[3]=scalelist[3];
+
+        }
+	
         if(NL_LTP==1)
-        {
+        { double scalelist[4] = [1.3162, 1.07796, 0.882794, 0.72296]
 
 
-                                scalenumberGp[0]=1.3162;
+                                scalenumberGp[0]=scalelist[0];
 
-                                                scalenumberGp[1]=1.07796;
+                                                scalenumberGp[1]=scalelist[1];
 
-                                                                scalenumberGp[2]=0.882704;
+                                                                scalenumberGp[2]=scalelist[2];
 
-                                                                                scalenumberGp[3]=0.72296;
+                                                                                scalenumberGp[3]=scalelist[3];
         }
 
 	sigmaDtoD = 0;	// Sigma of device-to-device weight update vairation in gaussian distribution
