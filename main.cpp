@@ -151,7 +151,7 @@ int main() {
 		char str[1024];
 		sprintf(str, "NL_%.2f_%.2f_CS_%d_LRsplit_%d.csv" ,NL_Gp, NL_Gn, CS,LRsplit );
 		read.open(str,fstream::app);     
-		read<< i<<", "<<(double)correct/param->numMnistTestImages*100;
+		read<< i<<", "<<(double)correct/param->numMnistTestImages*100<<", ";
 	}
 	printf("\n");
 	return 0;
